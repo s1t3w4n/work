@@ -5,24 +5,25 @@ import java.util.regex.Pattern;
 
 public class SimpleOperation implements Operation {
 
-    private final String regex;
+    private final Pattern pattern;
     private final String replacement;
 
     public SimpleOperation(String regex, String replacement) {
-        this.regex = regex;
+        pattern = Pattern.compile(regex);
         this.replacement = replacement;
+
     }
 
     @Override
     public String fix(String text) {
-        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);
         text = matcher.replaceAll(replacement);
         return text;
     }
 
     @Override
-    public String get() {
-        return regex;
+    public boolean match(String text) {
+        Matcher matcher = pattern.matcher(text);
+        return matcher.find();
     }
 }

@@ -1,5 +1,6 @@
 package fixers;
 
+import operations.HeadOperation;
 import operations.Operation;
 import operations.SimpleOperation;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -9,7 +10,6 @@ import readwrite.ReadWriteFiles;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class DocumentFixer {
 
@@ -31,6 +31,14 @@ public class DocumentFixer {
         operations.add(new SimpleOperation("^\\+-", "+")); // плюс минус
         operations.add(new SimpleOperation("^Q:", "S:")); // замена старой маркировки
         operations.add(new SimpleOperation("\u00AC", "")); //¬ символ
+        operations.add(new SimpleOperation("\\.\\.\\.", "\u2026")); //сохранение троеточий
+        operations.add(new SimpleOperation("^V\\ы", "V")); // замена старой маркировки
+        operations.add(new HeadOperation("^I", ":")); //Двоеточия после I
+        operations.add(new HeadOperation("^S", ":")); //Двоеточия после S
+//        operations.add(new HeadOperation("^V\\d\\d", ":")); //Двоеточия после S
+//        operations.add(new HeadOperation("^V\\d", ":")); //Двоеточия после S
+        operations.add(new SimpleOperation("::", ":")); //двойные двоеточия - зло
+
 
     }
 
@@ -58,8 +66,7 @@ public class DocumentFixer {
                 newPar.setSpacingAfter(0);
                 XWPFRun run = newPar.createRun();
                 for (int i = 0; i < operations.size(); i++) {
-                    Pattern pattern = Pattern.compile(operations.get(i).get());
-                    if (pattern.matcher(line).find()) {
+                    if (operations.get(i).match(line)) {
                         line = operations.get(i).fix(line);
                         i = 0;
                     }

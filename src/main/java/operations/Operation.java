@@ -2,5 +2,5 @@ package operations;
 
 public interface Operation {
     String fix(String text);
-    String get();
+    boolean match(String text);
 }
