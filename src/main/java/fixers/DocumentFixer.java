@@ -39,38 +39,35 @@ public class DocumentFixer {
     }
 
     public XWPFDocument fixDocument() {
-        XWPFDocument newDoc = new XWPFDocument();
+        List<String> lines = new ArrayList<>();
         for (XWPFParagraph paragraph : document.getParagraphs()) {
             String text = paragraph.getText();
             if (!text.isEmpty()) {
                 String[] split = text.split("\n");
-                for (String s : split) {
-                    newDoc.createParagraph()
-                            .createRun()
-                            .setText(s);
-                }
+                lines.addAll(Arrays.asList(split));
             }
         }
-        return fixText(newDoc);
+        return fixText(lines);
     }
 
-    private XWPFDocument fixText(XWPFDocument document) {
+    private XWPFDocument fixText(List<String> lines) {
         XWPFDocument newDoc = new XWPFDocument();
-        for (XWPFParagraph paragraph : document.getParagraphs()) {
-            String text = paragraph.getText();
-            XWPFParagraph newPar = newDoc.createParagraph();
-            newPar.setSpacingAfter(0);
-            XWPFRun run = newPar.createRun();
-            for (int i = 0; i < operations.size(); i++) {
-                Pattern pattern = Pattern.compile(operations.get(i).get());
-                if (pattern.matcher(text).find()) {
-                    text = operations.get(i).fix(text);
-                    i = 0;
+        for (String line : lines) {
+            if (!line.isEmpty()) {
+                XWPFParagraph newPar = newDoc.createParagraph();
+                newPar.setSpacingAfter(0);
+                XWPFRun run = newPar.createRun();
+                for (int i = 0; i < operations.size(); i++) {
+                    Pattern pattern = Pattern.compile(operations.get(i).get());
+                    if (pattern.matcher(line).find()) {
+                        line = operations.get(i).fix(line);
+                        i = 0;
+                    }
                 }
+                run.setText(line);
+                run.setFontSize(14);
+                run.setFontFamily("Times New Roman");
             }
-            run.setText(text);
-            run.setFontSize(14);
-            run.setFontFamily("Times New Roman");
         }
         return newDoc;
     }
