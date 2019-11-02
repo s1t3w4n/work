@@ -1,5 +1,6 @@
 package fixers;
 
+import operations.AnswerOperation;
 import operations.HeadOperation;
 import operations.Operation;
 import operations.SimpleOperation;
@@ -30,16 +31,24 @@ public class DocumentFixer {
         operations.add(new SimpleOperation("^\\+\\+", "+")); // два плюса
         operations.add(new SimpleOperation("^\\+-", "+")); // плюс минус
         operations.add(new SimpleOperation("^Q:", "S:")); // замена старой маркировки
+        operations.add(new SimpleOperation("^I\\.", "I:")); // замена старой маркировки
+        operations.add(new SimpleOperation("^I;", "I:")); // замена старой маркировки
+        operations.add(new SimpleOperation("^I,", "I:")); // замена старой маркировки
+        operations.add(new SimpleOperation("^S\\.", "S:")); // замена старой маркировки
+        operations.add(new SimpleOperation("^S;", "S:")); // замена старой маркировки
+        operations.add(new SimpleOperation("^S,", "S:")); // замена старой маркировки
+        operations.add(new SimpleOperation("^R\\s", "R")); // правый с проелом
+        operations.add(new SimpleOperation("^L\\s", "L")); // левый с пробелом
+        operations.add(new SimpleOperation("^V\\s", "V")); // глава с пробелом
+        operations.add(new SimpleOperation("^V-", "V")); // глава с минусом
         operations.add(new SimpleOperation("\u00AC", "")); //¬ символ
         operations.add(new SimpleOperation("\\.\\.\\.", "\u2026")); //сохранение троеточий
-        operations.add(new SimpleOperation("^V\\ы", "V")); // замена старой маркировки
+        operations.add(new SimpleOperation("^V\\s", "V")); // замена старой маркировки
         operations.add(new HeadOperation("^I", ":")); //Двоеточия после I
         operations.add(new HeadOperation("^S", ":")); //Двоеточия после S
-//        operations.add(new HeadOperation("^V\\d\\d", ":")); //Двоеточия после S
-//        operations.add(new HeadOperation("^V\\d", ":")); //Двоеточия после S
+        operations.add(new HeadOperation("^V\\d+", ":")); //Двоеточия после V b цифры
+        operations.add(new AnswerOperation("^\\+","^-","^R\\d+","^L\\d+", "^\\d")); // однообразные операции надо всем вариантами ответов
         operations.add(new SimpleOperation("::", ":")); //двойные двоеточия - зло
-
-
     }
 
     public DocumentFixer(ReadWriteFiles readWriteFiles) throws IOException {
