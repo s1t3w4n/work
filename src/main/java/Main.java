@@ -27,6 +27,7 @@ public class Main {
         DocumentFixer documentFixer = new DocumentFixer(readWriteFiles);
         readWriteFiles.writeFile(documentFixer.fixDocument());
     }
+
 }
 
 

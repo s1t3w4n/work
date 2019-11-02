@@ -6,7 +6,6 @@ import operations.Operation;
 import operations.SimpleOperation;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
 import readwrite.ReadWriteFiles;
 
 import java.io.IOException;
@@ -47,7 +46,7 @@ public class DocumentFixer {
         operations.add(new HeadOperation("^I", ":")); //Двоеточия после I
         operations.add(new HeadOperation("^S", ":")); //Двоеточия после S
         operations.add(new HeadOperation("^V\\d+", ":")); //Двоеточия после V b цифры
-        operations.add(new AnswerOperation("^\\+","^-","^R\\d+","^L\\d+", "^\\d")); // однообразные операции надо всем вариантами ответов
+        operations.add(new AnswerOperation("^\\+", "^-", "^R\\d+", "^L\\d+", "^\\d")); // однообразные операции надо всем вариантами ответов
         operations.add(new SimpleOperation("::", ":")); //двойные двоеточия - зло
     }
 
@@ -55,7 +54,7 @@ public class DocumentFixer {
         document = readWriteFiles.readFile();
     }
 
-    public XWPFDocument fixDocument() {
+    public List<String> fixDocument() {
         List<String> lines = new ArrayList<>();
         for (XWPFParagraph paragraph : document.getParagraphs()) {
             String text = paragraph.getText();
@@ -67,25 +66,20 @@ public class DocumentFixer {
         return fixText(lines);
     }
 
-    private XWPFDocument fixText(List<String> lines) {
-        XWPFDocument newDoc = new XWPFDocument();
+    private List<String> fixText(List<String> lines) {
+        List<String> newLines = new ArrayList<>();
         for (String line : lines) {
             if (!line.isEmpty()) {
-                XWPFParagraph newPar = newDoc.createParagraph();
-                newPar.setSpacingAfter(0);
-                XWPFRun run = newPar.createRun();
                 for (int i = 0; i < operations.size(); i++) {
                     if (operations.get(i).match(line)) {
                         line = operations.get(i).fix(line);
                         i = 0;
                     }
                 }
-                run.setText(line);
-                run.setFontSize(14);
-                run.setFontFamily("Times New Roman");
             }
+            newLines.add(line);
         }
-        return newDoc;
+        return newLines;
     }
 
 }
