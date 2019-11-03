@@ -18,7 +18,7 @@ public class TopicReport implements Report {
         this.lines = lines;
         Pattern pattern = Pattern.compile(name);
         file = new File(pattern.matcher(path).replaceFirst("topics-"
-                + name.replaceFirst(".docx", ".txt")));
+                + nameSet(name)));
     }
 
     @Override

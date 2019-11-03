@@ -23,7 +23,7 @@ public class LinesReport implements Report {
         this.lines = lines;
         Pattern pattern = Pattern.compile(name);
         file = new File(pattern.matcher(path).replaceFirst("lines-order-"
-                + name.replaceAll(".docx", ".txt")));
+                + nameSet(name)));
     }
 
     @Override
@@ -46,4 +46,5 @@ public class LinesReport implements Report {
             e.printStackTrace();
         }
     }
+
 }

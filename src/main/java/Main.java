@@ -15,7 +15,8 @@ public class Main {
         for (final File fileEntry : Objects.requireNonNull(folder.listFiles())) {
             if (!fileEntry.isDirectory()
                     && (fileEntry.getName().endsWith(".doc")
-                    || (fileEntry.getName().endsWith(".docx")))
+                    || fileEntry.getName().endsWith(".docx")
+                    || fileEntry.getName().endsWith(".rtf"))
                     && (!fileEntry.getName().startsWith("fixed-"))) {
                 doMagic(fileEntry.getPath());
             }
