@@ -16,7 +16,7 @@ public class LinesReport implements Report {
 
     public LinesReport(List<String> lines, String path, String name) {
         patterns = new ArrayList<>();
-        String[] regexs = new String[]{"^V\\d+:", "^I:", "^S:", "^\\+:", "^-:", "^R\\d+:", "^L\\d+:", "^\\d:", "^F\\d+:", ""};
+        String[] regexs = new String[]{"^V\\d+:", "^I:", "^S:", "^\\+:", "^-:", "^R\\d+:", "^L\\d+:", "^\\d:", "^F\\d+:"};
         for (String regex : regexs) {
             patterns.add(Pattern.compile(regex));
         }
@@ -37,7 +37,7 @@ public class LinesReport implements Report {
                         break;
                     }
                 }
-                if (print) {
+                if (print && !line.isEmpty()) {
                     writer.write(line);
                     writer.write("\n\n");
                 }
