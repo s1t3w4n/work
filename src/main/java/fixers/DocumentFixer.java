@@ -19,7 +19,7 @@ public class DocumentFixer {
 
     static {
         operations.add(new SimpleOperation("\t", " ")); // убрать табы из документа
-        operations.add(new SimpleOperation("\2006", " ")); // убрать убра какие-то порбелы
+        operations.add(new SimpleOperation("\u2006", " ")); // убрать убра какие-то порбелы
         operations.add(new SimpleOperation("\u00A0", " ")); // убрать неразрывные пробелы
         operations.add(new SimpleOperation("\\s\\s", " ")); // убрать двойные пробелы
         operations.add(new SimpleOperation("^\\s", "")); // убрать пробелы вначале строки
