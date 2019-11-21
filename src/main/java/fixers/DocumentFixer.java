@@ -33,6 +33,7 @@ public class DocumentFixer {
         operations.add(new SimpleOperation("^Q:", "S:")); // замена старой маркировки
         operations.add(new SimpleOperation("^I\\.", "I:")); // замена старой маркировки
         operations.add(new SimpleOperation("^I;", "I:")); // замена старой маркировки
+        operations.add(new SimpleOperation("^\u2160", "I")); // странная ишка
         operations.add(new SimpleOperation("^I,", "I:")); // замена старой маркировки
         operations.add(new SimpleOperation("^S\\.", "S:")); // замена старой маркировки
         operations.add(new SimpleOperation("^S;", "S:")); // замена старой маркировки
