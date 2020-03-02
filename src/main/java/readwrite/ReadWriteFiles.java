@@ -1,5 +1,6 @@
 package readwrite;
 
+import fixers.NameFixer;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -28,7 +29,7 @@ public class ReadWriteFiles {
         String name = file.getName();
 
 
-        Pattern whatever = Pattern.compile(name);
+        Pattern whatever = Pattern.compile(NameFixer.fix(name));
         XWPFDocument document = fixText(lines);
         FileOutputStream out = new FileOutputStream(whatever.matcher(path).replaceFirst("fixed-" + name));
         document.write(out);
