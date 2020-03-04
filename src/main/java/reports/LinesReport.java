@@ -24,7 +24,11 @@ public class LinesReport implements Report {
         }
         this.lines = lines;
         Pattern pattern = Pattern.compile(NameFixer.fix(name));
-        file = new File(pattern.matcher(path).replaceFirst("lines-order-"
+        File folder = new File(pattern.matcher(path).replaceFirst("orders/"));
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+        file = new File(pattern.matcher(path).replaceFirst("orders/lines-order-"
                 + nameSet(name)));
     }
 

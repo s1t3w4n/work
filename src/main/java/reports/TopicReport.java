@@ -19,7 +19,11 @@ public class TopicReport implements Report {
         pattern = Pattern.compile("^V\\d+:");
         this.lines = lines;
         Pattern pattern = Pattern.compile(NameFixer.fix(name));
-        file = new File(pattern.matcher(path).replaceFirst("topics-"
+        File folder = new File(pattern.matcher(path).replaceFirst("orders/"));
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+        file = new File(pattern.matcher(path).replaceFirst("orders/topics-"
                 + nameSet(name)));
     }
 

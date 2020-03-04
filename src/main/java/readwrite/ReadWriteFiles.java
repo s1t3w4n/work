@@ -31,7 +31,11 @@ public class ReadWriteFiles {
 
         Pattern whatever = Pattern.compile(NameFixer.fix(name));
         XWPFDocument document = fixText(lines);
-        FileOutputStream out = new FileOutputStream(whatever.matcher(path).replaceFirst("fixed-" + name));
+        File folder = new File(whatever.matcher(path).replaceFirst("fixed/"));
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+        FileOutputStream out = new FileOutputStream(whatever.matcher(path).replaceFirst("fixed/fixed-" + name));
         document.write(out);
         out.close();
         document.close();
