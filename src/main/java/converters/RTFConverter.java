@@ -12,8 +12,11 @@ public class RTFConverter implements Converter {
 
     @Override
     public void convert() throws Exception {
-        Document document = new Document(filePath);
+        if (getLicense()) {
+            return;
+        }
 
-        document.save(filePath + "x");
+        Document document = new Document(filePath);
+        document.save(filePath.replaceAll("\\.rtf$", ".docx"));
     }
 }

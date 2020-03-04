@@ -33,7 +33,7 @@ public class Main {
             List<Converter> toConvert = new ArrayList<>();
             if ((!fileEntry.isDirectory()
                     && fileEntry.getName().endsWith(".doc"))) {
-                    toConvert.add(new DOCConverter(fileEntry.getPath()));
+                toConvert.add(new DOCConverter(fileEntry.getPath()));
             }
             if ((!fileEntry.isDirectory()
                     && fileEntry.getName().endsWith(".rtf"))) {

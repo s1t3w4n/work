@@ -12,7 +12,13 @@ public class DOCConverter implements Converter {
 
     @Override
     public void convert() throws Exception {
-        Document document = new Document(filePath);
-        document.save(filePath + "x");
+        if (getLicense()) {
+            return;
+        }
+        if (filePath.endsWith(".doc")) {
+            Document document = new Document(filePath);
+            document.save(filePath + "x");
+        }
     }
+
 }

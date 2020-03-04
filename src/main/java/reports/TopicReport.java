@@ -1,5 +1,7 @@
 package reports;
 
+import fixers.NameFixer;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,7 +18,7 @@ public class TopicReport implements Report {
     public TopicReport(List<String> lines, String path, String name) {
         pattern = Pattern.compile("^V\\d+:");
         this.lines = lines;
-        Pattern pattern = Pattern.compile(name);
+        Pattern pattern = Pattern.compile(NameFixer.fix(name));
         file = new File(pattern.matcher(path).replaceFirst("topics-"
                 + nameSet(name)));
     }
