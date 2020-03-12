@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        final File folder = new File("src/main/resources");
+        final File folder = new File(System.getProperty("user.dir"));
         convert(folder);
         listFilesForFolder(folder);
     }
