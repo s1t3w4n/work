@@ -1,4 +1,4 @@
-package operations;
+package ru.my.operations;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

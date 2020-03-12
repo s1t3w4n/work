@@ -1,6 +1,6 @@
-package reports;
+package ru.my.reports;
 
-import fixers.NameFixer;
+import ru.my.fixers.NameFixer;
 
 import java.io.File;
 import java.io.FileWriter;

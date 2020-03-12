@@ -15,7 +15,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -26,12 +25,15 @@
             <groupId>com.aspose</groupId>
             <artifactId>aspose-words</artifactId>
             <version>18.8</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/aspose-words-18.8-jdk16-crack.jar</systemPath>
         </dependency>
-
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>aspose-words</id>
+            <url>file:${project.basedir}/lib</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
@@ -50,7 +52,7 @@
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
-                                        <Main-Class>Main</Main-Class>
+                                        <Main-Class>ru.my.Main</Main-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>

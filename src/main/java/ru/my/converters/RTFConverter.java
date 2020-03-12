@@ -1,4 +1,4 @@
-package converters;
+package ru.my.converters;
 
 import com.aspose.words.Document;
 

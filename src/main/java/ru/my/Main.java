@@ -1,8 +1,10 @@
-import converters.Converter;
-import converters.DOCConverter;
-import converters.RTFConverter;
-import fixers.DocumentFixer;
-import readwrite.ReadWriteFiles;
+package ru.my;
+
+import ru.my.converters.Converter;
+import ru.my.converters.DOCConverter;
+import ru.my.converters.RTFConverter;
+import ru.my.fixers.DocumentFixer;
+import ru.my.readwrite.ReadWriteFiles;
 
 import java.io.File;
 import java.io.IOException;

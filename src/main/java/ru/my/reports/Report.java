@@ -1,4 +1,4 @@
-package reports;
+package ru.my.reports;
 
 import java.io.FileNotFoundException;
 

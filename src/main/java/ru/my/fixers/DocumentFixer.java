@@ -1,12 +1,12 @@
-package fixers;
+package ru.my.fixers;
 
-import operations.AnswerOperation;
-import operations.HeadOperation;
-import operations.Operation;
-import operations.SimpleOperation;
+import ru.my.operations.AnswerOperation;
+import ru.my.operations.HeadOperation;
+import ru.my.operations.Operation;
+import ru.my.operations.SimpleOperation;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import readwrite.ReadWriteFiles;
+import ru.my.readwrite.ReadWriteFiles;
 
 import java.io.IOException;
 import java.util.*;

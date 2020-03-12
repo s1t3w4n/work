@@ -1,4 +1,4 @@
-package fixers;
+package ru.my.fixers;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

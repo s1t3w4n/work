@@ -1,4 +1,4 @@
-package operations;
+package ru.my.operations;
 
 public interface Operation {
     String fix(String text);

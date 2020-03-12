@@ -1,11 +1,11 @@
-package readwrite;
+package ru.my.readwrite;
 
-import fixers.NameFixer;
+import ru.my.fixers.NameFixer;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
-import reports.LinesReport;
-import reports.TopicReport;
+import ru.my.reports.LinesReport;
+import ru.my.reports.TopicReport;
 
 import java.io.*;
 import java.util.List;
