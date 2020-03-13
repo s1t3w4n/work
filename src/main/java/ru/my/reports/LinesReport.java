@@ -45,7 +45,8 @@ public class LinesReport implements Report {
                 }
                 if (print && !line.isEmpty()) {
                     writer.write(line);
-                    writer.write("\n\n");
+                    writer.write(System.getProperty("line.separator"));
+                    writer.write(System.getProperty("line.separator"));
                 }
             }
         } catch (IOException e) {

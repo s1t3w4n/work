@@ -39,7 +39,7 @@ public class TopicReport implements Report {
                         writer.write("\t");
                     }
                     writer.write(line);
-                    writer.write("\n");
+                    writer.write(System.getProperty("line.separator"));
                 }
             }
         } catch (IOException e) {
